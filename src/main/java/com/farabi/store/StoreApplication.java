@@ -1,21 +1,30 @@
 package com.farabi.store;
 
+import com.farabi.store.entities.Address;
+import com.farabi.store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class StoreApplication {
 
-    public  static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-        var orderService = context.getBean(OrderService.class);
-        var orderService2 = context.getBean(OrderService.class);
-        var manager = context.getBean(NotificationManager.class);
-        var resource = context.getBean(HeavyResource.class);
-        orderService.placeOrder();
-        manager.sendNotification("Order Placed");
-    }
+    public static void main(String[] args) {
+        SpringApplication.run(StoreApplication.class, args);
 
+        User user = new User();
+        user.setName("John");
+        user.setPassword("password");
+        user.setEmail("john@codewithmosh.com");
+
+        Address address = new Address();
+        address.setStreet("street");
+        address.setCity("city");
+        address.setState("state");
+        address.setZip("zip");
+
+        user.addAddress(address);
+        System.out.println(user);
+        System.out.println(address);
+    }
 }
