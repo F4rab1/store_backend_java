@@ -1,6 +1,6 @@
 CREATE TABLE tags
 (
-    id   INT AUTO_INCREMENT PRIMARY KEY,
+    id   SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 

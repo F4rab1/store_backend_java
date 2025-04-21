@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: store
+  datasource:
+    url: jdbc:postgresql://localhost:5433/storedb
+    username: fara
+    password: password
