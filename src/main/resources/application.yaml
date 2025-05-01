@@ -5,3 +5,5 @@ spring:
     url: jdbc:postgresql://localhost:5433/storedb
     username: fara
     password: password
+  jpa:
+    show-sql: true
