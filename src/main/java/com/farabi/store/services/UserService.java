@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
     private final EntityManager entityManager;
 
@@ -37,5 +38,11 @@ public class UserService {
             System.out.println("Transient / Detached");
 
 
+    }
+
+    public void showRelatedEntities() {
+        var user = userRepository.findById(2L).orElseThrow();
+        System.out.println(user.getEmail());
+        // profile is eager loaded
     }
 }
