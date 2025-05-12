@@ -1,5 +1,6 @@
 package com.farabi.store.services;
 
+import com.farabi.store.entities.Address;
 import com.farabi.store.entities.User;
 import com.farabi.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -44,5 +45,24 @@ public class UserService {
         var user = userRepository.findById(2L).orElseThrow();
         System.out.println(user.getEmail());
         // profile is eager loaded
+    }
+
+    public void persistRelated() {
+        var user = User.builder()
+                .name("Yers")
+                .email("yers@example.com")
+                .password("password")
+                .build();
+
+        var address = Address.builder()
+                .street("Street 1")
+                .city("City 1")
+                .state("State 1")
+                .zip("Zip 1")
+                .build();
+
+        user.addAddress(address);
+
+        userRepository.save(user);
     }
 }
