@@ -1,6 +1,6 @@
 package com.farabi.store;
 
-import com.farabi.store.services.ProfileService;
+import com.farabi.store.services.AddressService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -10,8 +10,8 @@ public class StoreApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
-        var service =  context.getBean(ProfileService.class);
-        service.showRelatedEntities();
+        var service =  context.getBean(AddressService.class);
+        service.fetchAddress();
     }
 
 }
