@@ -38,4 +38,8 @@ public class ProductService {
         productRepository.deleteById(4L);
     }
 
+    public void derivedQueryExample() {
+        var product = productRepository.findByName("Product 2");
+        System.out.println(product);
+    }
 }
