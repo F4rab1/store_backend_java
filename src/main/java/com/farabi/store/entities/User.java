@@ -79,4 +79,7 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Profile profile;
 
+    public void addFavoriteProduct(Product product) {
+        favoriteProducts.add(product);
+    }
 }

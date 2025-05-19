@@ -2,6 +2,7 @@ package com.farabi.store.services;
 
 import com.farabi.store.entities.Address;
 import com.farabi.store.entities.User;
+import com.farabi.store.repositories.ProductRepository;
 import com.farabi.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -11,10 +12,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final ProductRepository productRepository;
     private final EntityManager entityManager;
 
-    public UserService(UserRepository userRepository, EntityManager entityManager) {
+    public UserService(UserRepository userRepository, ProductRepository productRepository , EntityManager entityManager) {
         this.userRepository = userRepository;
+        this.productRepository = productRepository;
         this.entityManager = entityManager;
     }
 
@@ -73,4 +76,13 @@ public class UserService {
         user.removeAddress(address);
         userRepository.save(user);
     }
+
+    @Transactional
+    public void manageProducts() {
+        var user = userRepository.findById(3L).orElseThrow();
+        var products = productRepository.findAll();
+        products.forEach(user::addFavoriteProduct);
+        userRepository.save(user);
+    }
+
 }
