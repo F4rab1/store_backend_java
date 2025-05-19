@@ -42,4 +42,9 @@ public class ProductService {
         var product = productRepository.findByName("Product 2");
         System.out.println(product);
     }
+
+    @Transactional
+    public void updateProductPrices() {
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(10), (byte)1);
+    }
 }
