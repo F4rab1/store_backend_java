@@ -1,5 +1,6 @@
 package com.farabi.store.services;
 
+import com.farabi.store.entities.Category;
 import com.farabi.store.entities.Product;
 import com.farabi.store.repositories.CategoryRepository;
 import com.farabi.store.repositories.ProductRepository;
@@ -46,5 +47,10 @@ public class ProductService {
     @Transactional
     public void updateProductPrices() {
         productRepository.updatePriceByCategory(BigDecimal.valueOf(10), (byte)1);
+    }
+
+    public void fetchProducts() {
+        var products = productRepository.findByCategory(new Category((byte)1));
+        products.forEach(System.out::println);
     }
 }

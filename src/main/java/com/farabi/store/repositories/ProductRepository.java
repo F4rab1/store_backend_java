@@ -1,5 +1,8 @@
 package com.farabi.store.repositories;
 
+import com.farabi.store.dtos.ProductSummary;
+import com.farabi.store.dtos.ProductSummaryDTO;
+import com.farabi.store.entities.Category;
 import com.farabi.store.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -50,4 +53,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Modifying
     @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
     void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
+
+    @Query("select new com.farabi.store.dtos.ProductSummaryDTO(p.id, p.name) from Product p where p.category = :category")
+    List<ProductSummary> findByCategory(@Param("category") Category category);
 }
