@@ -1,7 +1,6 @@
 package com.farabi.store.repositories;
 
 import com.farabi.store.dtos.ProductSummary;
-import com.farabi.store.dtos.ProductSummaryDTO;
 import com.farabi.store.entities.Category;
 import com.farabi.store.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
