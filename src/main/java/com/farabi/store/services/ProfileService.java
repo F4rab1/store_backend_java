@@ -19,4 +19,10 @@ public class ProfileService {
         System.out.println(profile.getUser().getEmail());
         // user is lazy loaded (user retrieved when we access it)
     }
+
+    @Transactional
+    public void fetchProfilesByLoyaltyPoints() {
+        var profiles = profileRepository.findByLoyaltyPointsGreaterThanOrderByUserEmail(4);
+        profiles.forEach(p -> System.out.println(p.getId() + ": " + p.getUser().getEmail()));
+    }
 }
