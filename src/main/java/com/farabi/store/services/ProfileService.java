@@ -1,6 +1,7 @@
 package com.farabi.store.services;
 
 import com.farabi.store.repositories.ProfileRepository;
+import com.farabi.store.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +9,11 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
 
     private final ProfileRepository profileRepository;
+    private final UserRepository userRepository;
 
-    public ProfileService(ProfileRepository profileRepository) {
+    public ProfileService(ProfileRepository profileRepository, UserRepository userRepository) {
         this.profileRepository = profileRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
@@ -22,7 +25,7 @@ public class ProfileService {
 
     @Transactional
     public void fetchProfilesByLoyaltyPoints() {
-        var profiles = profileRepository.findByLoyaltyPointsGreaterThanOrderByUserEmail(4);
-        profiles.forEach(p -> System.out.println(p.getId() + ": " + p.getUser().getEmail()));
+        var users = userRepository.findLoyalUsers(4);
+        users.forEach(p -> System.out.println(p.getId() + ": " + p.getEmail()));
     }
 }

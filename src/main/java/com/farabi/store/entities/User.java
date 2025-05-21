@@ -75,8 +75,8 @@ public class User {
     @Builder.Default
     private Set<Product> favoriteProducts = new HashSet<>();
 
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-//    private Profile profile;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Profile profile;
 
     public void addFavoriteProduct(Product product) {
         favoriteProducts.add(product);
