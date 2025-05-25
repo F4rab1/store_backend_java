@@ -4,9 +4,11 @@ import com.farabi.store.entities.Category;
 import com.farabi.store.entities.Product;
 import com.farabi.store.repositories.CategoryRepository;
 import com.farabi.store.repositories.ProductRepository;
+import com.farabi.store.repositories.specifications.ProductSpecification;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -69,5 +71,21 @@ public class ProductService {
     public void fetchProductsByCriteria() {
         var products = productRepository.findProductsByCriteria("Prod" , BigDecimal.valueOf(1), null);
         products.forEach(System.out::println);
+    }
+
+    public void fetchProductsBySpecifications(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+        Specification<Product> spec = Specification.where(null);
+
+        if (name != null) {
+            spec = spec.and(ProductSpecification.hasName(name));
+        }
+        if (minPrice != null) {
+            spec = spec.and(ProductSpecification.hasPriceGreaterThanOrEqualTo(minPrice));
+        }
+        if (maxPrice != null) {
+            spec = spec.and(ProductSpecification.hasPriceLessThanOrEqualTo(maxPrice));
+        }
+
+        productRepository.findAll(spec).forEach(System.out::println);
     }
 }
