@@ -5,6 +5,8 @@ import com.farabi.store.entities.Product;
 import com.farabi.store.repositories.CategoryRepository;
 import com.farabi.store.repositories.ProductRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -51,7 +53,16 @@ public class ProductService {
 
     @Transactional
     public void fetchProducts() {
-        var products = productRepository.findProducts(BigDecimal.valueOf(5), BigDecimal.valueOf(11));
+        var product = new Product();
+        product.setName("Product");
+
+        var matcher = ExampleMatcher.matching()
+                .withIncludeNullValues()
+                .withIgnorePaths("id", "description")
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        var example = Example.of(product, matcher);
+        var products = productRepository.findAll(example);
         products.forEach(System.out::println);
     }
 }
