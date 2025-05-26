@@ -14,7 +14,7 @@ public class StoreApplication {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
         var service =  context.getBean(ProductService.class);
-        service.fetchProductsBySpecifications("Prod", BigDecimal.valueOf(1), null);
+        service.fetchPaginatedProducts(0, 10);
     }
 
 }
