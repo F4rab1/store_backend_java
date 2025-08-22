@@ -1,6 +1,7 @@
 package com.farabi.store.controllers;
 
 import com.farabi.store.dtos.UserDto;
+import com.farabi.store.mappers.UserMapper;
 import com.farabi.store.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,13 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {
         var users = userRepository.findAll()
                 .stream()
-                .map(user -> new UserDto(user.getId(), user.getName(), user.getEmail()))
+                .map(userMapper::toDto)
                 .toList();
         return ResponseEntity.ok(users);
     }
@@ -33,7 +35,6 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-        var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
