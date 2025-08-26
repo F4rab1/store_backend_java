@@ -1,6 +1,7 @@
 package com.farabi.store.controllers;
 
 import com.farabi.store.dtos.RegisterUserRequest;
+import com.farabi.store.dtos.UpdateUserRequest;
 import com.farabi.store.dtos.UserDto;
 import com.farabi.store.mappers.UserMapper;
 import com.farabi.store.repositories.UserRepository;
@@ -58,5 +59,20 @@ public class UserController {
         var userDto = userMapper.toDto(user);
         var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
         return ResponseEntity.created(uri).body(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(
+            @PathVariable(name = "id") Long id,
+            @RequestBody UpdateUserRequest request) {
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        userMapper.update(request, user);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
