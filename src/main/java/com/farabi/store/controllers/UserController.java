@@ -4,6 +4,7 @@ import com.farabi.store.dtos.ChangePasswordRequest;
 import com.farabi.store.dtos.RegisterUserRequest;
 import com.farabi.store.dtos.UpdateUserRequest;
 import com.farabi.store.dtos.UserDto;
+import com.farabi.store.entities.Role;
 import com.farabi.store.mappers.UserMapper;
 import com.farabi.store.repositories.UserRepository;
 import jakarta.validation.Valid;
@@ -67,6 +68,7 @@ public class UserController {
 
         var user = userMapper.toEntity(request);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.USER);
         userRepository.save(user);
 
         var userDto = userMapper.toDto(user);
