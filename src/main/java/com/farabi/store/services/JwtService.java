@@ -1,6 +1,7 @@
 package com.farabi.store.services;
 
 import com.farabi.store.config.JwtConfig;
+import com.farabi.store.entities.Role;
 import com.farabi.store.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -48,6 +49,10 @@ public class JwtService {
 
     public Long getUserIdFromToken(String token) {
         return Long.valueOf(getClaims(token).getSubject());
+    }
+
+    public Role getRoleFromToken(String token) {
+        return Role.valueOf(getClaims(token).get("role", String.class));
     }
 
     private Claims getClaims(String token) {
