@@ -4,7 +4,7 @@
 
 **Authentication Endpoint** 
 
-<img width="1415" height="98" alt="Screenshot 2025-09-26 at 23 39 52" src="https://github.com/user-attachments/assets/21088f82-ed4c-4c5e-8298-274921a88103" />
+<img width="1420" height="215" alt="Screenshot 2025-10-16 at 22 03 39" src="https://github.com/user-attachments/assets/cc78b4ae-4f2e-41b4-83e9-faff7a7c698a" />
 
 **Products Endpoint** - Create, Read, Update, Delete
 
