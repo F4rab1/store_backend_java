@@ -4,8 +4,6 @@ import com.farabi.store.dtos.CheckoutRequest;
 import com.farabi.store.dtos.CheckoutResponse;
 import com.farabi.store.dtos.ErrorDto;
 import com.farabi.store.entities.Order;
-import com.farabi.store.entities.OrderItem;
-import com.farabi.store.entities.OrderStatus;
 import com.farabi.store.repositories.CartRepository;
 import com.farabi.store.repositories.OrderRepository;
 import com.farabi.store.services.AuthService;
@@ -45,20 +43,7 @@ public class CheckoutController {
             );
         }
 
-        var order = new Order();
-        order.setTotalPrice(cart.getTotalPrice());
-        order.setStatus(OrderStatus.PENDING);
-        order.setCustomer(authService.getCurrentUser());
-
-        cart.getItems().forEach(item -> {
-            var orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            orderItem.setProduct(item.getProduct());
-            orderItem.setQuantity(item.getQuantity());
-            orderItem.setTotalPrice(item.getTotalPrice());
-            orderItem.setUnitPrice(item.getProduct().getPrice());
-            order.getItems().add(orderItem);
-        });
+        var order = Order.fromCart(cart, authService.getCurrentUser());
 
         orderRepository.save(order);
 
