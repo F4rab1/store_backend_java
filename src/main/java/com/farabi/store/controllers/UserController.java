@@ -1,9 +1,6 @@
 package com.farabi.store.controllers;
 
-import com.farabi.store.dtos.ChangePasswordRequest;
-import com.farabi.store.dtos.RegisterUserRequest;
-import com.farabi.store.dtos.UpdateUserRequest;
-import com.farabi.store.dtos.UserDto;
+import com.farabi.store.dtos.*;
 import com.farabi.store.entities.Role;
 import com.farabi.store.mappers.UserMapper;
 import com.farabi.store.repositories.UserRepository;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -62,7 +58,7 @@ public class UserController {
             UriComponentsBuilder uriBuilder) {
         if (userRepository.existsByEmail(request.getEmail())) {
             return ResponseEntity.badRequest().body(
-                    Map.of("email", "Email is already registered.")
+                    new ErrorDto("Email is already in use")
             );
         }
 

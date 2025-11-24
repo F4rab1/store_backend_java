@@ -1,9 +1,6 @@
 package com.farabi.store.controllers;
 
-import com.farabi.store.dtos.AddItemToCartRequest;
-import com.farabi.store.dtos.CartDto;
-import com.farabi.store.dtos.CartItemDto;
-import com.farabi.store.dtos.UpdateCartItemRequest;
+import com.farabi.store.dtos.*;
 import com.farabi.store.exceptions.CartNotFoundException;
 import com.farabi.store.services.CartService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Map;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -84,12 +80,12 @@ public class CartController {
     }
 
     @ExceptionHandler({ CartNotFoundException.class })
-    public ResponseEntity<Map<String, String>> handleCartNotFoundException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Cart not found"));
+    public ResponseEntity<ErrorDto> handleCartNotFoundException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDto("Cart not found"));
     }
 
     @ExceptionHandler
-    public ResponseEntity<Map<String, String>> handleProductNotFoundException() {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Product not found in the cart"));
+    public ResponseEntity<ErrorDto> handleProductNotFoundException() {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDto("Product not found"));
     }
 }
