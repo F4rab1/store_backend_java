@@ -13,3 +13,7 @@
 **Carts Endpoint** - Create, Read, Update, Delete
 
 <img width="1422" height="388" alt="Screenshot 2025-09-18 at 23 57 06" src="https://github.com/user-attachments/assets/18e5050f-8683-494f-85ee-6b9ec080a710" />
+
+**Checkout Endpoint** 
+
+<img width="1418" height="108" alt="Screenshot 2025-10-21 at 20 54 19" src="https://github.com/user-attachments/assets/a52fdecd-1bb8-4c3f-a97e-0dd225cde6df" />
