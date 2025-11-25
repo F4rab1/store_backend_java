@@ -49,4 +49,8 @@ public class Order {
 
         return order;
     }
+
+    public boolean isPlaced(User customer) {
+        return this.customer.equals(customer);
+    }
 }
