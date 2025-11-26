@@ -6,6 +6,7 @@ import com.farabi.store.dtos.ErrorDto;
 import com.farabi.store.exceptions.CartEmptyException;
 import com.farabi.store.exceptions.CartNotFoundException;
 import com.farabi.store.services.CheckoutService;
+import com.stripe.exception.StripeException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class CheckoutController {
     private final CheckoutService chechoutService;
 
     @PostMapping
-    public CheckoutResponse checkout(@Valid @RequestBody CheckoutRequest request) {
+    public CheckoutResponse checkout(@Valid @RequestBody CheckoutRequest request) throws StripeException {
         return chechoutService.checkout(request);
     }
 
