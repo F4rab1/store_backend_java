@@ -7,23 +7,55 @@ import com.farabi.store.exceptions.CartEmptyException;
 import com.farabi.store.exceptions.CartNotFoundException;
 import com.farabi.store.exceptions.PaymenException;
 import com.farabi.store.services.CheckoutService;
+import com.stripe.exception.SignatureVerificationException;
+import com.stripe.net.Webhook;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/checkout")
 public class CheckoutController {
     private final CheckoutService chechoutService;
 
+    @Value("${stripe.webhookSecretKey}")
+    private String webhookSecretKey;
+
     @PostMapping
     public CheckoutResponse checkout(@Valid @RequestBody CheckoutRequest request) {
         return chechoutService.checkout(request);
+    }
 
+    @PostMapping("/webhook")
+    public ResponseEntity<Void> handleWebhook(
+            @RequestHeader("Stripe-Signature") String signature,
+            @RequestBody String payload
+    ) {
+        try {
+            var event = Webhook.constructEvent(payload, signature, webhookSecretKey);
+            System.out.println(event.getType());
+
+            var stripeObject = event.getDataObjectDeserializer().getObject().orElse(null);
+
+            switch (event.getType()) {
+                case "payment_intent.succeeded" -> {
+
+                }
+                case "payment_intent.failed" -> {
+
+                }
+            }
+
+            return ResponseEntity.ok().build();
+
+        } catch (SignatureVerificationException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @ExceptionHandler(PaymenException.class)
