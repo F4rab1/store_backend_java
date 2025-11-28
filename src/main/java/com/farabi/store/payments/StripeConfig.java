@@ -1,4 +1,4 @@
-package com.farabi.store.config;
+package com.farabi.store.payments;
 
 import com.stripe.Stripe;
 import jakarta.annotation.PostConstruct;

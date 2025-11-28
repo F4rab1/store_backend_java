@@ -1,4 +1,4 @@
-package com.farabi.store.exceptions;
+package com.farabi.store.payments;
 
 import lombok.NoArgsConstructor;
 

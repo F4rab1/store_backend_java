@@ -1,4 +1,4 @@
-package com.farabi.store.dtos;
+package com.farabi.store.payments;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.farabi.store.services;
+package com.farabi.store.payments;
 
 import com.farabi.store.entities.PaymentStatus;
 import lombok.AllArgsConstructor;
