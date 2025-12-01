@@ -1,6 +1,6 @@
 package com.farabi.store.payments;
 
-import com.farabi.store.entities.PaymentStatus;
+import com.farabi.store.orders.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

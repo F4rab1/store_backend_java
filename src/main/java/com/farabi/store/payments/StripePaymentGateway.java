@@ -1,8 +1,8 @@
 package com.farabi.store.payments;
 
-import com.farabi.store.entities.Order;
-import com.farabi.store.entities.OrderItem;
-import com.farabi.store.entities.PaymentStatus;
+import com.farabi.store.orders.Order;
+import com.farabi.store.orders.OrderItem;
+import com.farabi.store.orders.PaymentStatus;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;

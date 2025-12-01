@@ -1,6 +1,6 @@
 package com.farabi.store.payments;
 
-import com.farabi.store.entities.Order;
+import com.farabi.store.orders.Order;
 
 import java.util.Optional;
 
