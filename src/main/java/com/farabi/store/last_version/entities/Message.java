@@ -1,4 +1,4 @@
-package com.farabi.store.entities;
+package com.farabi.store.last_version.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

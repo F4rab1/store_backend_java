@@ -1,4 +1,4 @@
-package com.farabi.store.controllers;
+package com.farabi.store.admin;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

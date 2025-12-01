@@ -1,4 +1,4 @@
-package com.farabi.store.controllers;
+package com.farabi.store.last_version.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
