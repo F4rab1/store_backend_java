@@ -1,6 +1,5 @@
-package com.farabi.store.last_version.controllers;
+package com.farabi.store.common;
 
-import com.farabi.store.last_version.entities.Message;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

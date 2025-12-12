@@ -1,4 +1,4 @@
-package com.farabi.store.last_version.dtos;
+package com.farabi.store.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

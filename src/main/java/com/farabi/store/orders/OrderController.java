@@ -1,6 +1,6 @@
 package com.farabi.store.orders;
 
-import com.farabi.store.last_version.dtos.ErrorDto;
+import com.farabi.store.common.ErrorDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

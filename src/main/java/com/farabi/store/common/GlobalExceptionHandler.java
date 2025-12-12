@@ -1,6 +1,5 @@
-package com.farabi.store.last_version.controllers;
+package com.farabi.store.common;
 
-import com.farabi.store.last_version.dtos.ErrorDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

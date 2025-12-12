@@ -1,6 +1,6 @@
 package com.farabi.store.carts;
 
-import com.farabi.store.last_version.dtos.ErrorDto;
+import com.farabi.store.common.ErrorDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

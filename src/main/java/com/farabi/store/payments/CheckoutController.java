@@ -1,6 +1,6 @@
 package com.farabi.store.payments;
 
-import com.farabi.store.last_version.dtos.ErrorDto;
+import com.farabi.store.common.ErrorDto;
 import com.farabi.store.carts.CartEmptyException;
 import com.farabi.store.carts.CartNotFoundException;
 import jakarta.validation.Valid;
